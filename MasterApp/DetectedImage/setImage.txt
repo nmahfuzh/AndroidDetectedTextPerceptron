@@ -1,0 +1,67 @@
+public static Image<Gray,Byte> Function(Image<Bgr,Byte> image0){
+Image<TOtherColor,TOtherDepth> image1 = image0.Convert<Gray,Byte>();
+image1._Erode(2);
+image1._ThresholdBinary([126], [255]);
+Image<Gray,Byte> image2 = image1.Canny(126, 0);
+return image2;
+}
+/////
+public static Image<Gray,Byte>^ Function(Image<Bgr,Byte>^ image0){
+Image<TOtherColor,TOtherDepth>^ image1 = image0->Convert<Gray,Byte>();
+image1->_Erode(2);
+image1->_ThresholdBinary([126], [255]);
+Image<Gray,Byte>^ image2 = image1->Canny(126, 0);
+return image2;
+}
+
+/////
+}
+Image<Gray,Byte> image2 = image1.SmoothGaussian(9, 9, 2, 2);
+Image<Gray,Byte> image3 = image2.ThresholdAdaptive([255], GaussianC, Binary, 11, [2]);
+Image<TOtherColor,TOtherDepth> image1 = image0.Convert<Gray,Byte>();
+public static Image<Gray,Byte> Function(Image<Bgr,Byte> image0){
+return image3;
+
+
+////New Great 
+public static Image<Gray,Byte> Function(Image<Bgr,Byte> image0){
+Image<TOtherColor,TOtherDepth> image1 = image0.Convert<Gray,Byte>();
+Image<Gray,Byte> image2 = image1.SmoothGaussian(9, 9, 2, 2);
+image2._Erode(5);
+image2._ThresholdBinary([98], [255]);
+return image2;
+}
+
+/// image data latih
+public static Image<Gray,Byte> Function(Image<Bgr,Byte> image0){
+Image<TOtherColor,TOtherDepth> image1 = image0.Convert<Gray,Byte>();
+Image<Gray,Byte> image2 = image1.SmoothGaussian(5, 5, 0, 0);
+image2._ThresholdBinary([150], [255]);
+return image2;
+}
+
+/// pre-processing
+public static Mat pre_processing(Mat imgSrc,int c){
+
+        Mat grayImage = new Mat(imgSrc.size(), CvType.CV_8UC1);
+        Mat erodeImage = new Mat(imgSrc.size(),CvType.CV_8UC1);
+        Mat blurImage = new Mat(imgSrc.size(),CvType.CV_8UC1);
+        Mat bwImage = new Mat(imgSrc.size(),CvType.CV_8UC1);
+        Mat cannyImage = new Mat(imgSrc.size(),CvType.CV_8UC1);
+        Mat resultImage = new Mat(imgSrc.size(),CvType.CV_8UC1);
+
+        if(c == 0){
+            Imgproc.cvtColor(imgSrc, grayImage, Imgproc.COLOR_RGB2GRAY, 4);
+            Imgproc.erode(grayImage, erodeImage, Imgproc.getStructuringElement(Imgproc.MORPH_CROSS, new Size(3,3)));
+            Imgproc.GaussianBlur(erodeImage, blurImage, new Size(5, 5),0,0);
+            double tresh_val = Imgproc.threshold(blurImage,bwImage,0,255,Imgproc.THRESH_OTSU);
+            Log.w("Teshold_Value : ",String.valueOf(tresh_val));
+            Imgproc.Canny(blurImage,cannyImage,8,tresh_val);
+            resultImage = cannyImage.clone();
+        }else if(c == 1){
+            Imgproc.cvtColor(imgSrc, grayImage, Imgproc.COLOR_RGB2GRAY, 4);
+            Imgproc.GaussianBlur(grayImage, blurImage, new Size(5, 5),0,0);
+            Imgproc.threshold(blurImage,resultImage,0,255,Imgproc.THRESH_OTSU);
+        }
+        return resultImage;
+    }

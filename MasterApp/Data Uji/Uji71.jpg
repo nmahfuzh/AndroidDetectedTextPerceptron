@@ -1,0 +1,38 @@
+ttps://pypi.python.org/pypi/setuptools
+Description-md5: 9647a56c73c2306eafcb47a4f7eb7739
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 9m
+
+Package: python-simplegeneric
+Priority: extra
+Section: python
+Installed-Size: 61
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Architecture: all
+Source: simplegeneric
+Version: 0.8.1-1
+Depends: python2.7, python (>= 2.7.1-0ubuntu2), python (<< 2.8)
+Filename: pool/main/s/simplegeneric/python-simplegeneric_0.8.1-1_all.deb
+Size: 11506
+MD5sum: fc5b6db5f33a90082b89507dab83dd20
+SHA1: 1f16987458f3dae01bfc0845796004bf81b83038
+SHA256: afd060abedd3660bc3c6c3adf10d73572ba7803797f084b39747b7b9c8c48cf1
+Description: simple generic functions for Python
+Homepage: http://pypi.python.org/pypi/simplegeneric
+Description-md5: 7c11e5fff1d97237836650aae1493ff0
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+
+Package: python-simplejson
+Priority: optional
+Section: python
+Installed-Size: 243
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Architecture: i386
+Source: simplejson
+Version: 3.8.1-1ubuntu2
+Provides: python2.

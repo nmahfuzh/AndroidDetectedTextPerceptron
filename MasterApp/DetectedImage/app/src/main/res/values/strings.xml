@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">DetectedImage</string>
+    <string name="title_activity_training_data">TrainingData</string>
+    <string-array name="InfoConvertData">
+        <item>Info</item>
+        <item>Process run</item>
+        <item>Getting Data Training</item>
+        <item>Path : </item>
+        <item>Convert Data . . .</item>
+        <item>It will take a minute please wait until finish</item>
+        <item>. . .</item>
+    </string-array>
+    <string-array name="InfoReadData">
+        <item>Reading Data in : </item>
+        <item>. . .</item>
+    </string-array>
+    <string-array name="InfoTrainData">
+        <item>Processing Learning with Perceptron</item>
+        <item>Initiating input Data</item>
+        <item>Initiating Epoch : </item>
+        <item>Initiating Target</item>
+        <item>Initiating Treshold = </item>
+        <item>Initiating LearnRate = </item>
+        <item>Initiating First Weight</item>
+        <item>Initiating Bias</item>
+        <item>Data Learning in Progress</item>
+        <item>It will take a minute please wait until finish</item>
+        <item>. . .</item>
+    </string-array>
+</resources>

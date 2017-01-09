@@ -1,0 +1,46 @@
+String pathInput = Environment.getExternalStorageDirectory()+"/skripsi/ktm" + fileName + ".jpg";
+            Mat mInput = Imgcodecs.imread(pathInput);
+
+            List<MatOfPoint> contours = new Vector<MatOfPoint>();
+
+            Mat grayImg = new Mat();
+            Imgproc.cvtColor(mInput, grayImg, Imgproc.COLOR_RGB2GRAY);
+            Imgproc.Canny(grayImg, grayImg, 50, 50);
+            Imgproc.GaussianBlur(grayImg, grayImg, new Size(5, 5), 5);
+
+            Mat threshImg = new Mat();
+            Imgproc.threshold(grayImg, threshImg, 25, 255, Imgproc.THRESH_BINARY);
+            //Imgproc.adaptiveThreshold(grayImg,threshImg,255,1,1,11,2);
+
+            Imgproc.findContours(threshImg, contours, new Mat(), Imgproc.RETR_CCOMP, Imgproc.CHAIN_APPROX_SIMPLE);
+            //getSquareContours(contours);
+
+            double maxArea = -1;
+            int maxAreaIdx = -1;
+            MatOfPoint temp_contour = contours.get(0); //the largest is at the index 0 for starting point
+            MatOfPoint2f approxCurve = new MatOfPoint2f();
+            MatOfPoint2f maxCurve = new MatOfPoint2f();
+            List<MatOfPoint> largest_contours = new ArrayList<MatOfPoint>();
+            for (int idx = 0; idx < contours.size(); idx++) {
+                temp_contour = contours.get(idx);
+                double contourarea = Imgproc.contourArea(temp_contour);
+                //compare this contour to the previous largest contour found
+                if (contourarea > maxArea) {
+                    //check if this contour is a square
+                    MatOfPoint2f new_mat = new MatOfPoint2f( temp_contour.toArray() );
+                    int contourSize = (int)temp_contour.total();
+                    Imgproc.approxPolyDP(new_mat, approxCurve, contourSize*0.05, true);
+                    if (approxCurve.total() == 4) {
+                        maxCurve = approxCurve;
+                        maxArea = contourarea;
+                        maxAreaIdx = idx;
+                        largest_contours.add(temp_contour);
+                        ret = Imgproc.boundingRect(temp_contour);
+                    }
+                }
+            }
+
+            if(ret.size() != null){
+                Mat ROI1 = new Mat(mInput, ret);
+                Imgcodecs.imwrite(pathInput,ROI1);
+            }

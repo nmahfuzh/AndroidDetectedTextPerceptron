@@ -1,0 +1,16 @@
+nternalSetPrototype(H.prototype,Q.prototype);
+%AddNamedProperty(H,"BYTES_PER_ELEMENT",1,
+1|2|4);
+%AddNamedProperty(H.prototype,
+"constructor",a.Uint8Array,2);
+%AddNamedProperty(H.prototype,
+"BYTES_PER_ELEMENT",1,
+1|2|4);
+
+%SetCode(I,Int8ArrayConstructor);
+%FunctionSetPrototype(I,new j());
+%InternalSetPrototype(I,Q);
+%InternalSetPrototype(I.prototype,Q.prototype);
+%AddNamedProperty(I,"BYTES_PER_ELEMENT",1,
+1|2|4);
+%AddNamedPro
